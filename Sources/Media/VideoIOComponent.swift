@@ -474,7 +474,7 @@ extension VideoIOComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
             sampleBuffer.reflectHorizontal()
         }
         #endif
-
+        self.mixer?.userDelegate?.didOutputVideo(sampleBuffer)
         encodeSampleBuffer(sampleBuffer)
     }
 }
@@ -482,7 +482,6 @@ extension VideoIOComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension VideoIOComponent: VideoDecoderDelegate {
     // MARK: VideoDecoderDelegate
     func sampleOutput(video sampleBuffer: CMSampleBuffer) {
-        self.mixer?.userDelegate?.didOutputVideo(sampleBuffer)
         queue.enqueue(sampleBuffer)
     }
 }
