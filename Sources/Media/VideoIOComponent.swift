@@ -482,6 +482,7 @@ extension VideoIOComponent: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension VideoIOComponent: VideoDecoderDelegate {
     // MARK: VideoDecoderDelegate
     func sampleOutput(video sampleBuffer: CMSampleBuffer) {
+        self.mixer?.userDelegate?.didOutputVideo(sampleBuffer)
         queue.enqueue(sampleBuffer)
     }
 }

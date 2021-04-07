@@ -6,7 +6,7 @@ import AVFoundation
     }
 #endif
 
-protocol AVMixerDelegate: AnyObject {
+public protocol AVMixerDelegate: AnyObject {
     func didOutputAudio(_ buffer: AVAudioPCMBuffer, presentationTimeStamp: CMTime)
     func didOutputVideo(_ buffer: CMSampleBuffer)
 }
@@ -120,6 +120,7 @@ public class AVMixer {
     }
 
     weak var delegate: AVMixerDelegate?
+    public weak var userDelegate: AVMixerDelegate?
 
     private var _recorder: AVRecorder?
     /// The recorder instance.
